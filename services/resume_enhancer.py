@@ -49,19 +49,15 @@ def _json(o: Any) -> str:
 
 
 def _load_template_html(template_id: str) -> str:
-	"""Load an HTML template by id from Backend/templates/{id}.html (preferred) or CVbackend/templates/{id}.html."""
+	"""Load an HTML template by id from Backend/templates/{id}.html."""
 	here = os.path.dirname(__file__)
-	candidates = [
-		os.path.abspath(os.path.join(here, "..", "templates", f"{template_id}.html")),
-		os.path.abspath(os.path.join(here, "..", "..", "CVbackend", "templates", f"{template_id}.html")),
-	]
-	for path in candidates:
-		if os.path.exists(path):
-			with open(path, "r", encoding="utf-8") as f:
-				return f.read()
-	raise FileNotFoundError(
-		"HTML template not found. Place an HTML file as Backend/templates/{id}.html or CVbackend/templates/{id}.html"
-	)
+	path = os.path.abspath(os.path.join(here, "..", "templates", f"{template_id}.html"))
+	if not os.path.exists(path):
+		raise FileNotFoundError(
+			f"HTML template not found at: {path}. Place an HTML file as Backend/templates/{template_id}.html"
+		)
+	with open(path, "r", encoding="utf-8") as f:
+		return f.read()
 
 
 def _call_groq_generate_html(template_html: str, resume_data: Dict[str, Any], job_data: Dict[str, Any], optimization_tips: List[str]) -> str:
