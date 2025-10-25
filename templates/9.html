@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Resume</title>
+    <style>
+        /* Base and A4 Sizing */
+        .cv-page {
+            width: 210mm; /* A4 width */
+            min-height: 297mm; /* A4 height */
+            margin: 0 auto;
+            padding: 20mm 15mm; /* Adjusted padding for better look and column balance */
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        /* Layout (Two Columns) */
+        .cv-main-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column-one {
+            width: 60%; /* Corresponds to \begin{minipage}[t]{0.60\textwidth} */
+            padding-right: 15pt;
+        }
+
+        .column-two {
+            width: 35%; /* Corresponds to \begin{minipage}[t]{0.33\textwidth} */
+        }
+
+        /* Header Styling */
+        .namesection {
+            text-align: center;
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .name {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #2a2a2a;
+            margin-bottom: 0.2em;
+        }
+
+        .contact-info a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .contact-info span:not(:last-child)::after {
+            content: "|";
+            margin: 0 5px;
+        }
+
+        /* Section Styling */
+        .section-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 1.2em;
+            margin-bottom: 0.5em;
+            border-bottom: 2px solid #333;
+            padding-bottom: 2px;
+        }
+        
+        /* Sub-Section Styling (Experience/Projects/Education/Skills) */
+        .runsubsection {
+            font-weight: bold;
+            display: inline;
+            margin: 0;
+            font-size: 1.1em;
+            color: #1a1a1a;
+        }
+
+        .descript {
+            font-style: italic;
+            display: inline;
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+            margin-left: 5px;
+        }
+
+        .location {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 2px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .section-separator {
+            margin-bottom: 0.5em; /* \sectionsep */
+            display: block;
+        }
+
+        /* Tight Emize (List Styling) */
+        .tightemize {
+            list-style: disc;
+            padding-left: 1.5em;
+            margin-top: 5pt; /* \vspace{\topsep} */
+            margin-bottom: 0;
+        }
+
+        .tightemize li {
+            margin-bottom: 0.2em;
+        }
+
+        /* Column Two Specific Styling */
+        .column-two .section-title {
+            font-size: 1.1em; /* Slightly smaller for the second column */
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+        }
+        
+        .column-two .subsection-title {
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 0.2em;
+            margin-top: 0.5em;
+        }
+
+        /* Skills specific */
+        .bullet {
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Links specific */
+        .links-entry {
+            margin-bottom: 0.2em;
+        }
+        
+        /* Coursework specific */
+        .course-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0;
+        }
+        
+        .course-list li {
+            margin-bottom: 0.1em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cv-page">
+
+    <div class="namesection">
+        <div class="name">John Doe</div>
+        <div class="contact-info">
+            <a href="mailto:john.doe@example.com">john.doe@example.com</a>
+            <span class="bullet">|</span>
+            <a href="tel:11111111111">111.111.1111</a>
+        </div>
+    </div>
+
+    <div class="cv-main-content">
+
+        <div class="column-one">
+
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="experience-entry">
+                <p class="runsubsection">Company A</p>
+                <p class="descript">| Advanced Development Intern</p>
+                <p class="location">May 2018 – Aug 2018 | Somewhere, XX</p>
+                <ul class="tightemize">
+                    <li>Developed a cloud-based solution to automate and enhance the engineering process for network installation using **AWS** and **Python**.</li>
+                    <li>Worked with other teams to create a system to collect and visualize telemetry data of network elements in real time using **AWS**, **Python**, and **DOMO**.</li>
+                    <li>Consulted with other teams to jump start cloud-technology adoption and solutions throughout the company.</li>
+                    <li>Contributed to initial planning for optics-alignment system utilizing **AWS**, **reinforcement learning**, and an **IoT architecture**.</li>
+                </ul>
+            </div>
+            <span class="section-separator"></span>
+
+            <div class="experience-entry">
+                <p class="runsubsection">Company B</p>
+                <p class="descript">| Intern</p>
+                <p class="location">Feb 2017 – Nov 2017 | Somewhere, XX</p>
+                <ul class="tightemize">
+                    <li>Coordinated with multiple departments to lead a software product evaluation resulting in a fit-for-purpose verdict and provided a recommendation on moving forward.</li>
+                    <li>Organized meetings with the vendor to receive in-depth product information and answers to cross-departmental questions.</li>
+                    <li>Participated on the Web Development Taskforce to provide **AngularJS** sites to internal customers.</li>
+                    <li>Participated in an internal **CodeJam** to prototype a **blockchain** application for managing a model supply-chain.</li>
+                    <li>Worked with a team to plan executive visit and team-building exercise for 200 employees.</li>
+                </ul>
+            </div>
+            <span class="section-separator"></span>
+
+            <div class="experience-entry">
+                <p class="runsubsection">My University ITS</p>
+                <p class="descript">| Assistant Support Specialist</p>
+                <p class="location">Aug 2015 – Oct 2016 | Somewhere, XX</p>
+                <ul class="tightemize">
+                    <li>Interacted with clients to assess their problems and implement a solution in an efficient, friendly manner.</li>
+                    <li>Prepared workstations and laptops for future use by company employees.</li>
+                    <li>Created scripts to automate common tasks and increase productivity.</li>
+                </ul>
+            </div>
+            <span class="section-separator"></span>
+
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="project-entry">
+                <p class="runsubsection">Space Robotics Team</p>
+                <p class="descript">| Path-Planning Lead</p>
+                <p class="location">Jan 2018 – Present | Somewhere, XX</p>
+                <ul class="tightemize">
+                    <li>Spearhead the development effort for the **path-planning** functionality of a team of three robots.</li>
+                    <li>**ROS** provides movement servers and the planning is being implemented in **Python** to allow for fully-autonomous operation.</li>
+                </ul>
+            </div>
+            <span class="section-separator"></span>
+
+            <div class="project-entry">
+                <p class="runsubsection">Chit Chat</p>
+                <p class="descript">| Class Project for Distributed Client-Server Programming</p>
+                <p class="location">Jan 2018 – May 2018 | Somewhere, XX</p>
+                <ul class="tightemize">
+                    <li>Lead the development of <a href="https://github.com/user/repo" target="_blank">**Chit Chat**</a>, an anonymous chat application created as a class project.</li>
+                    <li>Chit Chat provides real-time communication while utilizing a **PHP** backend and **AngularJS** frontend.</li>
+                </ul>
+            </div>
+            <span class="section-separator"></span>
+
+        </div><div class="column-two">
+
+            <h2 class="section-title">Education</h2>
+            <div class="education-entry">
+                <h3 class="subsection-title">My University</h3>
+                <p class="descript" style="margin-top:0;">Bachelor of Science in **Computer Science** with minors in **Mathematics** and **Statistics**</p>
+                <p class="location">Expected Dec 2019 | Somewhere, XX</p>
+                <p style="margin-top:0;">Dean's List (All Semesters)</p>
+                <p class="location">Cum. GPA: 4.0 / 4.0</p>
+            </div>
+            <span class="section-separator"></span>
+
+            <h2 class="section-title">Skills</h2>
+            
+            <div class="skills-entry">
+                <h3 class="subsection-title">Programming</h3>
+                <p class="location">3+ years:</p>
+                <p style="margin: 0 0 0.5em 0;">Python <span class="bullet">&bullet;</span> C/C++</p>
+                <p class="location">1+ years:</p>
+                <p style="margin: 0 0 0.5em 0;">PHP <span class="bullet">&bullet;</span> JavaScript</p>
+                <p class="location">0+ years:</p>
+                <p style="margin: 0 0 0.5em 0;">Matlab <span class="bullet">&bullet;</span> R <span class="bullet">&bullet;</span> SAS</p>
+            </div>
+            <span class="section-separator"></span>
+            
+            <div class="skills-entry">
+                <h3 class="subsection-title">Technology</h3>
+                <p style="margin: 0 0 0.5em 0;">Git/Github <span class="bullet">&bullet;</span> AWS <span class="bullet">&bullet;</span> Linux <span class="bullet">&bullet;</span> UNIX <span class="bullet">&bullet;</span> Windows <span class="bullet">&bullet;</span> ROS <span class="bullet">&bullet;</span> Artificial Intelligence <span class="bullet">&bullet;</span> Automation</p>
+            </div>
+            <span class="section-separator"></span>
+
+            <h2 class="section-title">Coursework</h2>
+            <div class="coursework-entry">
+                <h3 class="subsection-title">Graduate</h3>
+                <p>Analysis of Algorithms</p>
+            </div>
+            <span class="section-separator"></span>
+
+            <div class="coursework-entry">
+                <h3 class="subsection-title">Undergraduate</h3>
+                <ul class="course-list">
+                    <li>Artificial Intelligence <br><small style="font-style: italic; font-weight: bold;">(Teaching Assistant)</small></li>
+                    <li>AI Robotics</li>
+                    <li>Operating Systems I</li>
+                    <li>Calculus I-IV</li>
+                    <li>Data Analysis I</li>
+                    <li>Introduction to Probability</li>
+                </ul>
+            </div>
+            <span class="section-separator"></span>
+
+            <h2 class="section-title">Societies</h2>
+            <ul class="course-list">
+                <li>Association for Computing Machinery (ACM)</li>
+                <li>Scrum Alliance Certified ScrumMaster</li>
+                <li>University Honors College</li>
+                <li>National Merit Scholarship Finalist</li>
+            </ul>
+            <span class="section-separator"></span>
+
+            <h2 class="section-title">Links</h2>
+            <div class="links-entry">
+                Github:// <a href="https://github.com/" target="_blank">**JohnDoe**</a>
+            </div>
+            <div class="links-entry">
+                LinkedIn:// <a href="https://www.linkedin.com/" target="_blank">**johndoe**</a>
+            </div>
+            <span class="section-separator"></span>
+
+        </div></div></div>
+
+</body>
+</html>

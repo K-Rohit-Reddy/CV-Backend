@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Doe - Resume</title>
+  <style>
+    body { font-family: 'Cormorant Garamond', 'Charter', serif; margin: 40px; color: #111; line-height: 1.5; }
+    h1, h2 { color: #0e6e55; margin-bottom: 0; }
+    hr { border: 1px solid #a16f0b; }
+    a { color: #0e6e55; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .header { text-align: center; }
+    .header h1 { font-size: 2.5em; margin-bottom: 0.2em; }
+    .contact { font-size: 0.9em; color: #0e6e55; }
+    .section { margin-top: 25px; }
+    .item-title { text-decoration: underline; margin-top: 10px; }
+    ul { list-style: none; padding-left: 20px; }
+    li::before { content: "-- "; color: #0e6e55; }
+    .heading { font-weight: bold; display: flex; justify-content: space-between; }
+    .subheading { font-style: italic; margin-left: 10px; }
+    .skills { columns: 2; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>John Doe</h1>
+    <hr>
+    <p class="contact">
+      <a href="tel:1234567890">📞 123-456-7890</a> |
+      <a href="mailto:user@domain.tld">✉️ USER@domain.tld</a> |
+      <a href="https://linkedin.com/in/USER">LinkedIn</a> |
+      <a href="https://github.com/USER">GitHub</a>
+    </p>
+    <hr>
+  </div>
+
+  <div class="section">
+    <h2>Summary</h2>
+    <p>Simplified version of a monstrosity that I built back in college using current best practices.</p>
+  </div>
+
+  <div class="section">
+    <h2>Skills</h2>
+    <div class="skills">
+      <ul>
+        <li><strong>Automation:</strong> SaltStack, Ansible, Chef, Puppet</li>
+        <li><strong>Cloud:</strong> Salt-Cloud, Linode, GCP, AWS</li>
+        <li><strong>Languages:</strong> Python, Bash, PHP, Perl, VB/C#.Net</li>
+        <li><strong>OS:</strong> Debian, Ubuntu, CentOS, BSD, AIX</li>
+        <li><strong>Policies:</strong> CIS, SOC2, PCI-DSS, GDPR, ITIL</li>
+        <li><strong>Testing:</strong> Pytest, Docker, CircleCI, Jenkins, Inspec</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Experience</h2>
+
+    <div class="heading"><span>Consulting Corp</span><span>Jul 2015 – Jun 2025</span></div>
+    <div class="subheading">Senior DevOps Engineer (FTE Consultant)</div>
+    <ul>
+      <li class="item-title">Client: Notable Placement</li>
+      <li>Analyzed network traffic patterns to identify bottlenecks and optimize performance</li>
+      <li>Implemented firewall rules to enhance network security and prevent unauthorized access</li>
+      <li>Conducted vulnerability assessments and applied patches to secure systems</li>
+      <li>Collaborated with cross-functional teams to streamline IT processes</li>
+
+      <li class="item-title">Client: Challenges Unlimited</li>
+      <li>Configured monitoring tools for proactive issue resolution</li>
+      <li>Automated routine tasks using scripts to boost productivity</li>
+      <li>Documented system configurations for team knowledge sharing</li>
+      <li>Participated in disaster recovery planning and drills</li>
+
+      <li class="item-title">Client: Broken Galleries</li>
+      <li>Implemented hybrid cloud migration strategies</li>
+      <li>Optimized database performance with indexing and query tuning</li>
+      <li>Conducted scalability assessments for growth planning</li>
+      <li>Provided on-call support and performed root cause analysis</li>
+    </ul>
+
+    <div class="heading"><span>HealthCo Industries</span><span>Feb 2011 – Mar 2016</span></div>
+    <div class="subheading">Senior Systems Administrator (SRE)</div>
+    <ul>
+      <li>Managed virtualized server environments across multiple data centers</li>
+      <li>Oversaw migration of critical business apps to cloud platforms</li>
+      <li>Configured and monitored network security, firewalls, and IDS</li>
+      <li>Implemented multi-factor authentication for remote access</li>
+      <li>Reduced vulnerabilities through improved patch management</li>
+      <li>Performed vulnerability assessments and penetration testing</li>
+      <li>Automated provisioning and configuration management</li>
+      <li>Maintained documentation for IT policies and incident response</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Education</h2>
+    <p><strong>State University</strong></p>
+    <p><em>Bachelor of Science in Computer Information Systems</em></p>
+    <p><em>Minors: Networking, Network Security</em></p>
+
+    <h3>Certifications</h3>
+    <ul>
+      <li>SaltStack Certified Engineer</li>
+      <li>GCP - Professional Cloud Architect</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Projects</h2>
+
+    <div class="heading"><span>Hospital / Health Science IRB</span><span>Mar 2015 – Present</span></div>
+    <ul>
+      <li>Served as non-scientific/unaffiliated patient representative</li>
+      <li>Reviewed patient consent forms for completeness and clarity</li>
+      <li>Familiar with OHRP and HIPAA regulations</li>
+    </ul>
+
+    <div class="heading"><span>Debian Linux</span><span>Jan 2001 – Present</span></div>
+    <ul>
+      <li>Maintained packages in Debian repositories</li>
+      <li>Sponsored packages for prospective developers</li>
+      <li>Resolved bugs from tracking system reports</li>
+    </ul>
+  </div>
+
+</body>
+</html>

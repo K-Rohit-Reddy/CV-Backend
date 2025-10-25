@@ -1,0 +1,35 @@
+# Global ignores for this repo
+
+# Node
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Build/output
+.dist/
+dist/
+build/
+coverage/
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local services output
+Backend/Resumes/*.pdf

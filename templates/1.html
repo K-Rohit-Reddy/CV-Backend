@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — CV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-jQ1mXQm8KqVqJg3w1t0b1kzYVh9k1rYG5q7KZy1QWlX9Zb1uKx+6j6G1Z3K9F6v1dYz1G9a1Xb2c3d4e5f6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{--accent:#003366;--muted:#666;--card:#f8f9fb}
+    html,body{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;line-height:1.45;color:#222;margin:0;padding:24px;background:#fff}
+    .container{max-width:900px;margin:0 auto}
+    header{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:18px}
+    header h1{font-size:34px;margin:0}
+    .contacts{font-size:14px;color:var(--muted)}
+    .contacts a{color:var(--accent);text-decoration:none;margin:0 6px}
+    section{margin:18px 0;padding:12px 0;border-bottom:1px solid #eee}
+    section h2{font-size:18px;letter-spacing:1px;color:var(--accent);margin:0 0 10px}
+    .jobshort,.joblong{margin-bottom:10px}
+    .jobmeta{display:flex;justify-content:space-between;align-items:center}
+    .jobmeta .title{font-weight:700}
+    .jobmeta .dates{color:var(--muted);font-size:13px}
+    .joblong ul{margin:8px 0 0 18px}
+    .projects .project{margin-bottom:10px}
+    .projects .project a{color:var(--accent)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .skills table{width:100%}
+    footer{text-align:center;color:#999;margin-top:18px;font-size:13px}
+    @media (max-width:600px){.two-col{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Your Name</h1>
+      <div class="contacts">
+        <a href="https://github.com/username"><i class="fab fa-github"></i> username</a> |
+        <a href="https://linkedin.com/in/username"><i class="fab fa-linkedin"></i> username</a> |
+        <a href="https://mysite.com"><i class="fas fa-globe"></i> mysite.com</a> |
+        <a href="mailto:email@mysite.com"><i class="fas fa-envelope"></i> email@mysite.com</a> |
+        <a href="tel:+000000000000"><i class="fas fa-mobile-alt"></i> +00.00.000.000</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p>This CV can also be automatically compiled and published using GitHub Actions. For details, <a href="https://github.com/jitinnair1/autoCV" target="_blank" rel="noopener">click here</a>.</p>
+    </section>
+
+    <section>
+      <h2>Work Experience</h2>
+
+      <div class="jobshort">
+        <div class="jobmeta">
+          <div class="title">Designation</div>
+          <div class="dates">Jan 2021 - present</div>
+        </div>
+        <p>long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width</p>
+      </div>
+
+      <div class="joblong">
+        <div class="jobmeta">
+          <div class="title">Designation</div>
+          <div class="dates">Mar 2019 - Jan 2021</div>
+        </div>
+        <ul>
+          <li>long long line of blah blah that will wrap when the table fills the column width</li>
+          <li>again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah. again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <div class="jobmeta">
+            <div class="title">Some Project</div>
+            <div class="dates"><a href="https://some-link.com" target="_blank" rel="noopener">Link to Demo</a></div>
+          </div>
+          <p>long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="two-col">
+        <div>
+          <strong>2030 - present</strong>
+          <div>PhD (Subject) at <strong>University</strong> (GPA: 4.0/4.0)</div>
+        </div>
+        <div>
+          <strong>2023 - 2027</strong>
+          <div>Bachelor's Degree at <strong>College</strong> (GPA: 4.0/4.0)</div>
+        </div>
+        <div>
+          <strong>2022</strong>
+          <div>Class 12th Some Board (Grades)</div>
+        </div>
+        <div>
+          <strong>2021</strong>
+          <div>Class 10th Some Board (Grades)</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Publications</h2>
+      <p><em>Publications will be pulled from your BibTeX (citations.bib). In this HTML conversion the entries are not auto-populated — paste your bibliography here or link to a generated HTML bibliography.</em></p>
+      <ul>
+        <!-- Example placeholder -->
+        <li>Author A., Author B. (2024). <strong>Paper title</strong>. Journal Name.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <table class="skills" role="table">
+        <tr>
+          <td><strong>Some Skills</strong></td>
+          <td>This, That, Some of this and that etc.</td>
+        </tr>
+        <tr>
+          <td><strong>Some More Skills</strong></td>
+          <td>Also some more of this, Some more that, And some of this and that etc.</td>
+        </tr>
+      </table>
+    </section>
+
+    <footer>
+      <div>Last updated: <span id="last-updated"></span></div>
+    </footer>
+  </div>
+
+  <script>
+    // Fill last updated date in DD/MM/YYYY format (India locale)
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2,'0');
+    const mm = String(now.getMonth()+1).padStart(2,'0');
+    const yyyy = now.getFullYear();
+    document.getElementById('last-updated').textContent = dd + '/' + mm + '/' + yyyy;
+  </script>
+</body>
+</html>

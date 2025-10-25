@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* BASE STYLES & LAYOUT */
+        :root {
+            --mygrey: #d1d1d1; /* gray 0.82 approximation */
+            --resume-margin: 0.3in;
+            --page-width: 6.62in; /* Approximate width for tabular content */
+            --text-color: #000;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 10pt;
+            margin: var(--resume-margin);
+            padding: 0;
+            line-height: 1.2;
+            color: var(--text-color);
+            box-sizing: border-box; /* Crucial for preventing overlap with padding */
+        }
+
+        /* UTILITIES & SPACING */
+        .page-content {
+            width: 100%;
+            max-width: var(--page-width);
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* The LaTeX commands for tight spacing are translated to these margins: */
+        .tight-list {
+            padding-left: 1.5em; /* Default indent */
+            margin-top: 0.5em; /* Adjusted to prevent overlap with heading */
+            margin-bottom: 0.5em; /* Ensure space after list */
+            list-style: disc;
+        }
+        .tight-list li {
+            margin-bottom: 0.1em; /* Adjusted to prevent overlap, less aggressive than -0.45em */
+            padding-top: 0.2em;
+        }
+        .tight-list .nested-list {
+            margin: 0;
+            padding-left: 1em;
+            list-style: circle; /* \renewcommand{\labelitemii}{$\circ$} */
+            margin-top: 0.2em;
+            margin-bottom: 0.2em;
+        }
+        .tight-list .nested-list li {
+            margin: 0; /* noitemsep, nolistsep */
+            padding: 0;
+        }
+
+        /* HEADER: Contact Info (Logo removed) */
+        .header-info-block {
+            display: flex; /* Use flexbox for contact info layout */
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px; /* Space after header block */
+            padding-bottom: 5px; /* Add some padding at the bottom */
+            border-bottom: 1px solid transparent; /* Optional: if you want a subtle separator */
+        }
+        .info-left {
+            flex-basis: 70%; /* Give more space to the name/degree */
+            line-height: 1.3;
+        }
+        .info-right {
+            flex-basis: 30%; /* Space for contact details */
+            text-align: right;
+            line-height: 1.3;
+        }
+        .info-name {
+            font-size: 1.5em; /* \Large */
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .info-degree {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .info-institute {
+            margin-top: 2px;
+        }
+        .info-contact {
+            margin-top: 0;
+            margin-bottom: 2px;
+        }
+
+        /* ACADEMIC TABLE */
+        .academic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Increased margin to avoid overlap with next heading */
+        }
+        .academic-table th, .academic-table td {
+            text-align: left;
+            padding: 5px 10px;
+            vertical-align: top; /* Align content to the top */
+        }
+        .academic-table th {
+            font-weight: bold;
+            border-top: 2px double #000;
+            border-bottom: 2px double #000;
+        }
+        .academic-table tr:nth-child(2) td {
+            border-top: 1px solid #000; /* \toprule */
+        }
+        .academic-table tr:last-child td {
+            border-bottom: 2px double #000; /* \bottomrule\bottomrule */
+        }
+
+        /* SECTION HEADING (\resheading) */
+        .res-heading-container {
+            /* This container helps manage vertical spacing before the heading box */
+            margin-top: 15px; /* Ensures enough space from previous block */
+            margin-bottom: 0; /* The inner box will control its own bottom margin */
+            width: 100%;
+        }
+        .res-heading-inner {
+            background-color: var(--mygrey);
+            padding: 2px 0;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1em; /* \small in LaTeX context */
+            margin-bottom: 0.5em; /* Controlled space after the heading box */
+        }
+        
+        /* SUB-HEADING (e.g., Work Experience item) */
+        .res-subheading {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2em; /* Adjusted from -8pt to prevent overlap */
+            margin-top: 0.5em; /* Ensure some space above */
+            font-weight: bold;
+        }
+        .res-subheading-title {
+            text-transform: uppercase; /* \textsc */
+        }
+        .res-subheading-date {
+            font-style: italic;
+            text-transform: uppercase;
+            white-space: nowrap; /* Prevent date from breaking */
+            margin-left: 10px; /* Space from title */
+        }
+
+        /* SCHOLASTIC ACHIEVEMENTS */
+        .scholastic-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2em;
+        }
+        .scholastic-item strong {
+            font-weight: bold;
+        }
+        .scholastic-date {
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        /* SKILLS & INTERESTS */
+        .skills-section {
+            padding-left: 0;
+            list-style: none;
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        .skills-section li {
+            margin-bottom: 0.3em; /* Adjusted for better readability, from -0.7cm */
+            line-height: 1.1;
+        }
+        .skills-section strong {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        /* RELEVANT COURSES */
+        .relevant-courses-list {
+            padding-left: 0;
+            list-style: none;
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        .relevant-courses-list li {
+            margin-bottom: 0.5em; /* Adjusted for better separation */
+            line-height: 1.1;
+        }
+        .relevant-course-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .relevant-course-line strong {
+            font-weight: bold;
+        }
+        .relevant-course-line span {
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div class="page-content">
+
+    <div class="header-info-block">
+        <div class="info-left">
+            <div class="info-name">Name</div>
+            <div class="info-degree">M.S. Quantitative Economics</div>
+            <div class="info-institute">Indian Statistical Institute, Kolkata</div>
+        </div>
+        <div class="info-right">
+            <div class="info-contact">Mob. +91 XXXXXXXXXX</div>
+            <div class="info-contact">xxxxxx@gmail.com</div>
+        </div>
+    </div>
+    
+    <table class="academic-table">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>College/University</th>
+                <th>Year</th>
+                <th>CGPA/%</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>M.S. Quantitative Economics</td>
+                <td>Indian Statistical Institute</td>
+                <td>2021-23</td>
+                <td>xx.x</td>
+            </tr>
+            <tr>
+                <td>Undergrad</td>
+                <td>College Name</td>
+                <td>20xx-xx</td>
+                <td>xx.x</td>
+            </tr>
+            <tr>
+                <td>Intermediate/+2</td>
+                <td>School Name</td>
+                <td>20xx</td>
+                <td>xx.x</td>
+            </tr>
+            <tr>
+                <td>High School</td>
+                <td>School Name</td>
+                <td>20xx</td>
+                <td>X.xx</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="res-heading-container">
+        <div class="res-heading-inner">SCHOLASTIC ACHIEVEMENTS</div>
+    </div>
+    <ul class="tight-list">
+        <li class="scholastic-item">
+            <span>Secured <strong>X rank</strong> in xxxx</span>
+            <span class="scholastic-date">[20XX]</span>
+        </li>
+        <li class="scholastic-item">
+            <span>Cleared XX</span>
+            <span class="scholastic-date">[20xx]</span>
+        </li>
+    </ul>
+
+    <div class="res-heading-container">
+        <div class="res-heading-inner">WORK EXPERIENCE</div>
+    </div>
+    <ul class="tight-list">
+        <li>
+            <div class="res-subheading">
+                <span><strong>Role | company name</strong></span>
+                <span>[Jun’XX-Aug’XX]</span>
+            </div>
+            <ul class="nested-list">
+                <li>xxxx xxxxxx</li>
+                <li>xxxx xxxxx</li>
+            </ul>
+        </li>
+        <li>
+            <div class="res-subheading">
+                <span><strong>Role | Univ name</strong></span>
+                <span>[Jun’XX-Aug’XX]</span>
+            </div>
+            <ul class="nested-list">
+                <li>xxxx xxxxxx</li>
+                <li>xxxx xxxxx</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="res-heading-container">
+        <div class="res-heading-inner">SKILLS & INTERESTS</div>
+    </div>
+    <ul class="skills-section">
+        <li><strong>Programming Languages</strong>: Java, Python, STATA, R</li>
+        <li><strong>Tools & Libraries</strong>: Scipy, Matplotlib, Tensorflow <strong>\LaTeX</strong></li>
+        <li><strong>Interests</strong>: Data Analysis, Machine Learning</li>
+    </ul>
+
+    <div class="res-heading-container">
+        <div class="res-heading-inner">PROJECTS</div>
+    </div>
+    <ul class="tight-list">
+        <li>
+            <div class="res-subheading">
+                <span><strong>Project Heading | Instructor Name</strong></span>
+                <span>[Apr'22-Jun’22]</span>
+            </div>
+            <ul class="nested-list">
+                <li>Worked on xxx</li>
+                <li>xxx xxxx xxxxxxxxx xxxxxxxxxxxx xxx xxx xx</li>
+            </ul>
+        </li>
+        <li>
+            <div class="res-subheading">
+                <span><strong>Project Heading | Instructor Name</strong></span>
+                <span>[Apr'22-Jun’22]</span>
+            </div>
+            <ul class="nested-list">
+                <li>Worked on xxx</li>
+                <li>xxx xxxx xxxxxxxxx xxxxxxxxxxxx xxx xxx xx</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="res-heading-container">
+        <div class="res-heading-inner">RELEVANT COURSES</div>
+    </div>
+    <ul class="relevant-courses-list">
+        <li>
+            <div class="relevant-course-line">
+                <span><strong>Econometrics | Statistics | Mathematical Methods | Microeconomics | Macroeconomics</strong></span>
+                <span>[ISI-D]</span>
+            </div>
+            <div><strong>Game Theory</strong></div>
+        </li>
+        <li>
+            <div class="relevant-course-line">
+                <span><strong>Econometrics | Statistics | Mathematical Methods | Microeconomics | Macroeconomics</strong></span>
+                <span>[Bachelors]</span>
+            </div>
+            <div><strong>Game Theory</strong></div>
+        </li>
+    </ul>
+
+    <div class="res-heading-container">
+        <div class="res-heading-inner">POSITIONS OF RESPONSIBILITY</div>
+    </div>
+    <ul class="tight-list">
+        <li>
+            <div class="res-subheading">
+                <span><strong>PoR | Institute/Club/Body</strong></span>
+                <span>[Apr'22-Jun’22]</span>
+            </div>
+            <ul class="nested-list">
+                <li>Responsible for on xxx</li>
+                <li>xxx xxxx xxxxxxxxx xxxxxxxxxxxx xxx xxx xx</li>
+            </ul>
+        </li>
+        <li>
+            <div class="res-subheading">
+                <span><strong>PoR | Institute/Club/Body</strong></span>
+                <span>[Apr'22-Jun’22]</span>
+            </div>
+            <ul class="nested-list">
+                <li>Managed xxx</li>
+                <li>xxx xxxx xxxxxxxxx xxxxxxxxxxxx xxx xxx xx</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="res-heading-container">
+        <div class="res-heading-inner">EXTRACURRICULAR ACTIVITIES</div>
+    </div>
+    <ul class="tight-list" style="margin-bottom: 20px;">
+        <li>xxxx xxxxxx xxx xx</li>
+        <li>xxxx xxx xxx</li>
+        <li>xxxx xxxxx xxxx xxxx</li>
+    </ul>
+
+</div>
+</body>
+</html>

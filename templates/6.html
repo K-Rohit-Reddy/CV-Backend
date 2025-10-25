@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Doe - CV</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    /* PDF-Friendly A4 Layout */
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        width: 210mm;         /* Exact A4 width */
+        min-height: 297mm;    /* Exact A4 height */
+        margin: 0 auto;
+        padding: 18mm 18mm 18mm 18mm;  /* Top, Right, Bottom, Left margins */
+        font-family: Charter, 'Palatino Linotype', Palatino, 'Georgia', serif;
+        line-height: 1.5;
+        color: #000;
+        font-size: 10.5pt;
+        text-align: justify;
+        background: #fff;
+    }
+
+    @media print {
+        body {
+            width: 210mm;
+            margin: 0;
+            padding: 18mm;
+        }
+    }
+
+    /* Links */
+    a {
+        color: #000;
+        text-decoration: none;
+        word-break: break-word;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Header */
+    .header {
+        text-align: center;
+        margin-bottom: 15pt;
+        line-height: 1.4;
+    }
+    .header h1 {
+        font-size: 26pt;
+        margin: 0 0 8pt 0;
+        font-weight: bold;
+        letter-spacing: 0.5pt;
+    }
+    .contact-info {
+        font-size: 9.5pt;
+        margin-top: 6pt;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8pt;
+        line-height: 1.3;
+    }
+    .contact-info .separator {
+        font-weight: normal;
+        color: #666;
+    }
+
+    /* Last updated - moved to header area */
+    .last-updated {
+        text-align: right;
+        font-size: 8.5pt;
+        color: #666;
+        font-style: italic;
+        margin-bottom: 10pt;
+    }
+
+    /* Sections */
+    .section {
+        margin-top: 12pt;
+        margin-bottom: 8pt;
+        page-break-inside: avoid;
+    }
+    
+    .section:first-of-type {
+        margin-top: 0;
+    }
+    
+    .section-title {
+        font-size: 13pt;
+        font-weight: bold;
+        margin: 0 0 8pt 0;
+        border-bottom: 1.2pt solid #000;
+        padding-bottom: 3pt;
+        letter-spacing: 0.3pt;
+    }
+
+    /* Entries */
+    .twocol-entry-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 6pt;
+        page-break-inside: avoid;
+    }
+    .twocol-entry-main {
+        font-weight: bold;
+        flex-grow: 1;
+        font-size: 10.5pt;
+    }
+    .twocol-entry-side {
+        width: 45mm;
+        text-align: right;
+        flex-shrink: 0;
+        margin-left: 12pt;
+        font-size: 10pt;
+        white-space: nowrap;
+    }
+
+    .onecol-entry {
+        margin-top: 4pt;
+        page-break-inside: avoid;
+    }
+    .onecol-entry p {
+        margin: 0 0 6pt 0;
+        padding: 0;
+    }
+
+    /* Lists */
+    .highlights {
+        list-style-type: disc;
+        padding-left: 18pt;
+        margin: 6pt 0 8pt 0;
+    }
+    .highlights li {
+        margin-bottom: 2pt;
+        padding-left: 4pt;
+    }
+    
+    .highlights-bullet-entry {
+        list-style-type: none;
+        padding-left: 18pt;
+        margin: 6pt 0 8pt 0;
+    }
+    .highlights-bullet-entry li {
+        position: relative;
+        padding-left: 12pt;
+        margin-bottom: 2pt;
+    }
+    .highlights-bullet-entry li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+
+    /* Technology Section */
+    .tech-entry {
+        margin-top: 4pt;
+        margin-bottom: 0;
+    }
+    .tech-entry:first-child {
+        margin-top: 2pt;
+    }
+    .tech-entry strong {
+        font-weight: bold;
+    }
+
+    /* Publication */
+    .publication-authors {
+        margin-top: 4pt;
+        margin-bottom: 4pt;
+    }
+
+    /* Prevent orphans and widows */
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+</style>
+</head>
+<body>
+
+<div class="last-updated">Last updated in September 2024</div>
+
+<div class="header">
+    <h1>John Doe</h1>
+    <div class="contact-info">
+        <span class="location">Your Location</span>
+        <span class="separator">|</span>
+        <span class="email"><a href="mailto:youremail@yourdomain.com">youremail@yourdomain.com</a></span>
+        <span class="separator">|</span>
+        <span class="phone"><a href="tel:+90-541-999-99-99">0541 999 99 99</a></span>
+        <span class="separator">|</span>
+        <span class="website"><a href="https://yourwebsite.com/">yourwebsite.com</a></span>
+        <span class="separator">|</span>
+        <span class="linkedin"><a href="https://linkedin.com/in/yourusername">linkedin.com/in/yourusername</a></span>
+        <span class="separator">|</span>
+        <span class="github"><a href="https://github.com/yourusername">github.com/yourusername</a></span>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Welcome to RenderCV!</h2>
+    <div class="onecol-entry">
+        <p><a href="https://rendercv.com">RenderCV</a> is a LaTeX-based CV/resume version-control and maintenance app. It allows you to create a high-quality CV or resume as a PDF file from a YAML file, with <strong>Markdown syntax support</strong> and <strong>complete control over the LaTeX code</strong>.</p>
+    </div>
+    <div class="onecol-entry">
+        <p>The boilerplate content was inspired by <a href="https://github.com/dnl-blkv/mcdowell-cv">Gayle McDowell</a>.</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Quick Guide</h2>
+    <div class="onecol-entry">
+        <ul class="highlights-bullet-entry">
+            <li>Each section title is arbitrary and each section contains a list of entries.</li>
+            <li>There are 7 unique entry types: <em>BulletEntry</em>, <em>TextEntry</em>, <em>EducationEntry</em>, <em>ExperienceEntry</em>, <em>NormalEntry</em>, <em>PublicationEntry</em>, and <em>OneLineEntry</em>.</li>
+            <li>Select a section title, pick an entry type, and start writing your section!</li>
+            <li><a href="https://docs.rendercv.com/user_guide/">Here</a>, you can find a comprehensive user guide for RenderCV.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Education</h2>
+    <div class="twocol-entry-container">
+        <div class="twocol-entry-main">
+            <strong>University of Pennsylvania</strong>, BS in Computer Science
+        </div>
+        <div class="twocol-entry-side">
+            Sept 2000 – May 2005
+        </div>
+    </div>
+    <div class="onecol-entry">
+        <ul class="highlights">
+            <li>GPA: 3.9/4.0 (<a href="https://example.com">link</a>)</li>
+            <li><strong>Coursework:</strong> Computer Architecture, Comparison of Learning Algorithms, Computational Theory</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Experience</h2>
+    <div class="twocol-entry-container">
+        <div class="twocol-entry-main">
+            <strong>Software Engineer</strong>, Apple -- Cupertino, CA
+        </div>
+        <div class="twocol-entry-side">
+            June 2005 – Aug 2007
+        </div>
+    </div>
+    <div class="onecol-entry">
+        <ul class="highlights">
+            <li>Reduced time to render user buddy lists by 75% by implementing a prediction algorithm</li>
+            <li>Integrated iChat with Spotlight Search by creating a tool to extract metadata from saved chat transcripts and provide metadata to a system-wide search database</li>
+            <li>Redesigned chat file format and implemented backward compatibility for search</li>
+        </ul>
+    </div>
+    <div class="twocol-entry-container">
+        <div class="twocol-entry-main">
+            <strong>Software Engineer Intern</strong>, Microsoft -- Redmond, WA
+        </div>
+        <div class="twocol-entry-side">
+            June 2003 – Aug 2003
+        </div>
+    </div>
+    <div class="onecol-entry">
+        <ul class="highlights">
+            <li>Designed a UI for the VS open file switcher (Ctrl-Tab) and extended it to tool windows</li>
+            <li>Created a service to provide gradient across VS and VS add-ins, optimizing its performance via caching</li>
+            <li>Built an app to compute the similarity of all methods in a codebase, reducing the time from O(n²) to O(n log n)</li>
+            <li>Created a test case generation tool that creates random XML docs from XML Schema</li>
+            <li>Automated extraction and processing of large datasets from legacy systems using SQL and Perl scripts</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Publications</h2>
+    <div class="twocol-entry-container">
+        <div class="twocol-entry-main">
+            <strong>3D Finite Element Analysis of No-Insulation Coils</strong>
+        </div>
+        <div class="twocol-entry-side">
+            Jan 2004
+        </div>
+    </div>
+    <div class="onecol-entry">
+        <p class="publication-authors">Frodo Baggins, <strong><em>John Doe</em></strong>, Samwise Gamgee</p>
+        <p><a href="https://doi.org/10.1109/TASC.2023.3340648">10.1109/TASC.2023.3340648</a></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Projects</h2>
+    <div class="twocol-entry-container">
+        <div class="twocol-entry-main">
+            <strong>Multi-User Drawing Tool</strong>
+        </div>
+        <div class="twocol-entry-side">
+            <a href="https://github.com/sinaatalay/rendercv">github.com/name/repo</a>
+        </div>
+    </div>
+    <div class="onecol-entry">
+        <ul class="highlights">
+            <li>Developed an electronic classroom where multiple users can simultaneously view and draw on a "chalkboard" with each person's edits synchronized</li>
+            <li>Tools Used: C++, MFC</li>
+        </ul>
+    </div>
+    <div class="twocol-entry-container">
+        <div class="twocol-entry-main">
+            <strong>Synchronized Desktop Calendar</strong>
+        </div>
+        <div class="twocol-entry-side">
+            <a href="https://github.com/sinaatalay/rendercv">github.com/name/repo</a>
+        </div>
+    </div>
+    <div class="onecol-entry">
+        <ul class="highlights">
+            <li>Developed a desktop calendar with globally shared and synchronized calendars, allowing users to schedule meetings with other users</li>
+            <li>Tools Used: C#, .NET, SQL, XML</li>
+        </ul>
+    </div>
+    <div class="twocol-entry-container">
+        <div class="twocol-entry-main">
+            <strong>Custom Operating System</strong>
+        </div>
+        <div class="twocol-entry-side">
+            2002
+        </div>
+    </div>
+    <div class="onecol-entry">
+        <ul class="highlights">
+            <li>Built a UNIX-style OS with a scheduler, file system, text editor, and calculator</li>
+            <li>Tools Used: C</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Technologies</h2>
+    <div class="onecol-entry tech-entry">
+        <strong>Languages:</strong> C++, C, Java, Objective-C, C#, SQL, JavaScript
+    </div>
+    <div class="onecol-entry tech-entry">
+        <strong>Technologies:</strong> .NET, Microsoft SQL Server, XCode, Interface Builder
+    </div>
+</div>
+
+</body>
+</html>
