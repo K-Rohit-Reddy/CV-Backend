@@ -1,3 +1,38 @@
+"""
+Service: Resume Parser
+
+Purpose:
+- Extract text from uploaded PDF/DOCX resumes and convert it into a strict, structured JSON that matches RESUME_TEMPLATE.
+
+Environment variables:
+- GROQ_API_KEY: API key for Groq
+- GROQ_MODEL: Model name (e.g., gpt-oss-120b)
+
+Key functions:
+- parse_resume(file) -> Dict[str, Any]
+    - Input: file (FastAPI UploadFile-like) ending with .pdf or .docx
+    - Output: Dict in the exact shape of RESUME_TEMPLATE
+
+- get_resume_summary(text) -> Dict[str, Any]
+    - Input: raw text extracted from the resume
+    - Output: Dict in the exact shape of RESUME_TEMPLATE
+
+Output contract (RESUME_TEMPLATE keys):
+- candidate_name: str
+- contact_info: { email, phone, linkedin, portfolio, location }
+- current_role: str
+- experience_years: int
+- core_competencies: List[str]
+- skills: List[str]
+- education: List[{ institution, degree, year:int }]
+- work_experience: List[{ company, role, employment_type, start_date, end_date, is_current, description }]
+- achievements: List[str]
+
+Example usage (async):
+        from fastapi import UploadFile
+        data = await parse_resume(upload_file)
+        # data matches RESUME_TEMPLATE
+"""
 from groq import Groq
 import json
 from typing import Any, Dict

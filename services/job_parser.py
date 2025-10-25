@@ -1,3 +1,36 @@
+"""
+Service: Job Parser
+
+Purpose:
+- Fetch a job posting page, extract meaningful text, and produce a strict structured JSON (JOB_TEMPLATE) via Groq.
+
+Environment variables:
+- GROQ_API_KEY: API key for Groq
+- GROQ_MODEL: Model name used for extraction
+
+Key functions:
+- parse_job_from_url(url: str) -> Dict[str, Any]
+    - Input: public job URL (http/https)
+    - Output: Dict in the exact JOB_TEMPLATE shape
+
+- get_job_details(text: str, url: str) -> Dict[str, Any]
+    - Input: cleaned job posting text and original URL
+    - Output: Dict in the exact JOB_TEMPLATE shape
+
+Output contract (JOB_TEMPLATE keys):
+- job_title: str
+- company: { name, location, industry }
+- job_details: { employment_type, work_mode, experience_required, salary_range, posted_date }
+- requirements: { must_have_skills:[], nice_to_have_skills:[], education:[], experience_years:int, certifications:[] }
+- responsibilities: List[str]
+- core_competencies_needed: List[str]
+- job_description_raw: str (<= 2000 chars)
+- application_url: str
+
+Example usage (async):
+        job = await parse_job_from_url("https://example.com/jobs/123")
+        # job matches JOB_TEMPLATE
+"""
 from groq import Groq
 import json
 from typing import Any, Dict

@@ -1,3 +1,29 @@
+"""
+Service: Candidate Analysis
+
+Purpose:
+- Produce a dashboard-ready analysis JSON comparing job requirements to a candidate resume, including compulsory course recommendations.
+
+Environment variables:
+- GROQ_API_KEY: API key for Groq
+- GROQ_MODEL: Model name
+- TAVILY_API_KEY: Required for fetching certification/course links (Tavily search)
+
+Key function:
+- generate_candidate_analysis(job_data, resume_data) -> Dict[str, Any]
+    - Returns a Dict strictly matching ANALYSIS_TEMPLATE.
+    - Internally: extracts missing skills (Groq) -> expands related skills (Groq) -> fetches links (Tavily) -> ranks/normalizes courses (Groq) -> final analysis (Groq).
+
+Outputs (ANALYSIS_TEMPLATE, summarized):
+- overall_analysis: scores (0–100) and counts
+- charts: skill distribution, experience comparison, word cloud, career timeline, effectiveness gauge
+- profile_highlights: publications, volunteer_work
+- improvement_suggestions: textual_feedback, recommended_courses[{name,platform,url}], skill_gap_closure_plan, resume_optimization_tips
+
+Example usage (async):
+        analysis = await generate_candidate_analysis(job_data, resume_data)
+        # analysis matches ANALYSIS_TEMPLATE
+"""
 from groq import Groq
 from dotenv import load_dotenv
 from typing import Any, Dict, List

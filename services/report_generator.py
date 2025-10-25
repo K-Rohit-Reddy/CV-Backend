@@ -1,3 +1,32 @@
+"""
+Service: Report Generator (PDF)
+
+Purpose:
+- Create clean PDF reports for interview prep, either Questions-only or Questions & Answers, including minimal candidate info.
+
+Key functions:
+- create_pdf_report(job_id, questions, report_type, resume_data, match_score=None, answers=None, output_file_path=None) -> str
+    - If answers is provided, includes Q&A; otherwise questions only.
+    - Returns the file path of the generated PDF.
+- create_pdf_report_with_answers(...)
+- create_pdf_report_questions_only(...)
+
+Inputs:
+- job_id: Optional[str]
+- questions: List[str]
+- report_type: str (e.g., "Technical", "Behavioral")
+- resume_data: Dict[str, Any] (expects new resume_parser shape)
+- match_score: Optional summary (e.g., {overall_match, skill_match, experience_match})
+- answers: Optional[List[str]] (same order as questions)
+- output_file_path: Optional[str] (if None, uses timestamped name)
+
+Outputs:
+- File path string pointing to the generated PDF on disk.
+
+Example usage:
+        path = create_pdf_report(job_id, questions, "Technical", resume_data, answers=answers)
+        # path -> "report_with_answers_YYYYMMDD_hhmmss.pdf"
+"""
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.platypus import (

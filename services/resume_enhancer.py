@@ -1,3 +1,28 @@
+"""
+Service: Resume Enhancer (HTML + PDF)
+
+Purpose:
+- Generate enhanced resume HTML by filling a chosen HTML template with the candidate's data (no fabrication),
+	optionally converting it to PDF using an external Puppeteer server.
+
+Environment variables:
+- GROQ_API_KEY: API key for Groq
+- GROQ_MODEL: Model name (default gpt-oss-120b)
+- PDF_SERVER_URL: Puppeteer API endpoint (default http://localhost:3000/generate-pdf)
+
+Templates:
+- Place numeric HTML templates as Backend/templates/{id}.html (preferred) or CVbackend/templates/{id}.html
+	Example: Backend/templates/1.html for template_id="1".
+
+Key function:
+- generate_enhanced_resume(resume_data, job_data, optimization_tips, template_id="1", return_pdf=True) -> {"html": str, "pdf_path": Optional[str]}
+	- html: final HTML with placeholders replaced, preserving styles and structure
+	- pdf_path: path saved under Backend/Resumes/resume-<uuid>.pdf if PDF server succeeds, else None
+
+Example usage (async):
+		result = await generate_enhanced_resume(resume_data, job_data, tips, template_id="1", return_pdf=True)
+		# result["html"] and result["pdf_path"]
+"""
 from __future__ import annotations
 
 import os

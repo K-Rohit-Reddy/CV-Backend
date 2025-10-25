@@ -1,3 +1,28 @@
+"""
+Service: Interview Preparation
+
+Purpose:
+- Generate tailored interview questions and corresponding answers using job and resume data.
+
+Environment variables:
+- GROQ_API_KEY: API key for Groq
+- GROQ_MODEL: Model name for generation
+
+Key functions:
+- generate_interview_questions(job_data, resume_data, interview_type, count) -> List[str]
+	- interview_type: "technical" | "behavioral" | "system_design" | "mixed"
+	- count: number of questions to generate
+
+- generate_interview_answers(job_data, resume_data, interview_type, questions) -> List[str]
+	- questions: list returned by generate_interview_questions (same order)
+
+Output format:
+- Both functions return a Python List[str] parsed from a strict JSON payload {"items": [ ... ]}.
+
+Example usage (async):
+		qs = await generate_interview_questions(job_data, resume_data, "technical", 8)
+		ans = await generate_interview_answers(job_data, resume_data, "technical", qs)
+"""
 from groq import Groq
 from dotenv import load_dotenv
 from typing import Any, Dict, List
