@@ -27,6 +27,13 @@ Output contract (RESUME_TEMPLATE keys):
 - education: List[{ institution, degree, year:int }]
 - work_experience: List[{ company, role, employment_type, start_date, end_date, is_current, description }]
 - achievements: List[str]
+ - projects: List[{
+         title: str,
+         tech_stack: List[str],           # main technologies used
+    details: List[str],              # Detailed bullet lines combining description + highlights; include as many as present in the resume; do NOT shorten
+         github_url: str,                 # repo link if any, else ""
+         live_url: str                    # deployed app/site link if any, else ""
+     }]
 
 Example usage (async):
         from fastapi import UploadFile
@@ -99,6 +106,19 @@ RESUME_TEMPLATE = {
     "achievements": [
         "Increased efficiency by 20%",
         "Led team of 5 developers"
+    ],
+    "projects": [
+        {
+            "title": "Portfolio Website",
+            "tech_stack": ["React", "Next.js", "Vercel"],
+            "details": [
+                "Personal portfolio showcasing projects and blog posts.",
+                "Optimized lighthouse score to 98/100",
+                "Implemented dynamic MDX blog system"
+            ],
+            "github_url": "https://github.com/johndoe/portfolio",
+            "live_url": "https://johndoe.com"
+        }
     ]
 }
 
@@ -132,6 +152,12 @@ KEY RULES AND DEFINITIONS
 8. work_experience (array[object]):
    - company, role, employment_type, start_date(YYYY-MM), end_date(YYYY-MM or ""), is_current(bool), description.
 9. achievements (array[str]): 2–5 notable achievements.
+10. projects (array[object]): Each item has:
+    - title (string)
+    - tech_stack (array[str])
+    - details (array[str]): Use ALL relevant lines present in the resume. Preserve original phrasing and length (do not abridge or summarize). Keep each bullet as a single string.
+    - github_url (string URL or "")
+    - live_url (string URL or "")
 
 ──────────────────────────────
 ADDITIONAL RULES
@@ -140,6 +166,8 @@ ADDITIONAL RULES
 - Use double quotes only.
 - Empty fields → "" or [].
 - Output must be pure JSON, no markdown, no comments.
+ - Do NOT fabricate data: only include projects and links present in the resume text; if unsure, set github_url/live_url to "".
+ - Do NOT truncate or shorten project details; include all relevant lines as-is from the resume.
 ──────────────────────────────
 
 <RESUME_TEXT>
