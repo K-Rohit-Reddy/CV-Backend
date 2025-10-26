@@ -43,8 +43,13 @@ from tiktoken import encoding_for_model
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-MODEL_NAME = os.getenv("GROQ_MODEL")
+def _groq_client() -> Groq:
+    api = os.getenv("GROQ_API_KEY")
+    if not api:
+        raise RuntimeError("GROQ_API_KEY is required. Set it in your .env.")
+    return Groq(api_key=api)
+
+MODEL_NAME = os.getenv("GROQ_MODEL", "llama3-70b-8192")
 
 JOB_TEMPLATE = {
     "job_title": "",
@@ -190,7 +195,7 @@ Rules:
 """
 
     try:
-        completion = client.chat.completions.create(
+        completion = _groq_client().chat.completions.create(
             model=MODEL_NAME,
             messages=[
             {"role": "system", "content": "You are a strict JSON schema extractor for job postings."},

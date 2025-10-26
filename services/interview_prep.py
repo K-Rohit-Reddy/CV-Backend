@@ -21,8 +21,13 @@ import asyncio
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-MODEL_NAME = os.getenv("GROQ_MODEL")
+def _groq_client() -> Groq:
+    api = os.getenv("GROQ_API_KEY")
+    if not api:
+        raise RuntimeError("GROQ_API_KEY is required. Set it in your .env.")
+    return Groq(api_key=api)
+
+MODEL_NAME = os.getenv("GROQ_MODEL", "llama3-70b-8192")
 
 
 async def generate_interview_questions(
@@ -72,7 +77,7 @@ Return ONLY the JSON object with the key "items".
     ]
 
     try:
-        completion = client.chat.completions.create(
+        completion = _groq_client().chat.completions.create(
             model=MODEL_NAME,
             messages=messages,
             temperature=0.0,
@@ -134,7 +139,7 @@ Return ONLY the JSON object with the key "items".
     ]
 
     try:
-        completion = client.chat.completions.create(
+        completion = _groq_client().chat.completions.create(
             model=MODEL_NAME,
             messages=messages,
             temperature=0.0,

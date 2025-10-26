@@ -35,11 +35,20 @@ from tavily import TavilyClient
 load_dotenv()
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_MODEL = os.getenv("GROQ_MODEL")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama3-70b-8192")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
-client = Groq(api_key=GROQ_API_KEY)
-tavily_client = TavilyClient(TAVILY_API_KEY)
+def _groq_client() -> Groq:
+    api = os.getenv("GROQ_API_KEY")
+    if not api:
+        raise RuntimeError("GROQ_API_KEY is required. Set it in your .env.")
+    return Groq(api_key=api)
+
+def _tavily() -> TavilyClient:
+    key = os.getenv("TAVILY_API_KEY")
+    if not key:
+        raise RuntimeError("TAVILY_API_KEY is required for course recommendations. Set it in your .env.")
+    return TavilyClient(key)
 
 
 # Target JSON structure template to enforce model output
@@ -102,8 +111,7 @@ async def generate_candidate_analysis(job_data: Dict[str, Any], resume_data: Dic
     - Generate final analysis JSON with Groq using job_data, resume_data and recommended_courses
     """
 
-    if not tavily_client:
-        raise RuntimeError("TAVILY_API_KEY is required for course recommendations. Set it in your .env.")
+    tavily_client = _tavily()
 
     # 1) Missing skills via Groq
     missing_skills = await _extract_missing_skills_via_groq(job_data, resume_data)
@@ -172,7 +180,7 @@ Attribute guide (interpretation hints):
         {"role": "user", "content": prompt},
     ]
 
-    completion = client.chat.completions.create(
+    completion = _groq_client().chat.completions.create(
         model=GROQ_MODEL,
         messages=messages,
         temperature=0.0,
@@ -193,7 +201,7 @@ You are a technical career mentor. The user is missing: {', '.join(missing_skill
 Suggest 5–10 related tools, libraries, or frameworks in the same ecosystem.
 Place the names in items[] (strings only). No explanations.
 """
-    completion = client.chat.completions.create(
+    completion = _groq_client().chat.completions.create(
         model=GROQ_MODEL,
         messages=[
             {"role": "system", "content": "Return ONLY a JSON object {\"items\": [...]}."},
@@ -213,7 +221,9 @@ Place the names in items[] (strings only). No explanations.
 
 def _fetch_certifications_with_tavily(expanded_skills: List[str]) -> List[Dict[str, str]]:
     results: List[Dict[str, str]] = []
-    if not tavily_client:
+    try:
+        tavily_client = _tavily()
+    except Exception:
         return results
     for skill in expanded_skills:
         query = f"best certifications for {skill} developers"
@@ -252,7 +262,7 @@ Here are search results (title and link):
 Select the 5 most relevant certifications that directly teach the needed skills.
 Return them in items[] with fields name, platform, url. No extra fields.
 """
-    completion = client.chat.completions.create(
+    completion = _groq_client().chat.completions.create(
         model=GROQ_MODEL,
         messages=[
             {"role": "system", "content": "Return ONLY a JSON object {\"items\": [...]} with name/platform/url."},
@@ -298,7 +308,7 @@ Rules:
 {_json(resume_data)}
 </RESUME_DATA>
 """
-    completion = client.chat.completions.create(
+    completion = _groq_client().chat.completions.create(
         model=GROQ_MODEL,
         messages=[
             {"role": "system", "content": "Return ONLY a JSON object with missing_skills: [...]."},

@@ -37,11 +37,14 @@ from groq import Groq
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "gpt-oss-120b")
-PDF_SERVER_URL = os.getenv("PDF_SERVER_URL", "http://localhost:3000/generate-pdf")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama3-70b-8192")
+PDF_SERVER_URL = os.getenv("PDF_SERVER_URL", "http://localhost:3001/generate-pdf")
 
-client = Groq(api_key=GROQ_API_KEY)
+def _groq_client() -> Groq:
+	api = os.getenv("GROQ_API_KEY")
+	if not api:
+		raise RuntimeError("GROQ_API_KEY is required. Set it in your .env.")
+	return Groq(api_key=api)
 
 
 def _json(o: Any) -> str:
@@ -100,7 +103,7 @@ Return ONLY valid JSON with this exact shape:
 </OPTIMIZATION_TIPS>
 """
 
-	completion = client.chat.completions.create(
+	completion = _groq_client().chat.completions.create(
 		model=GROQ_MODEL,
 		messages=[
 			{"role": "system", "content": "You transform resume_data into final HTML using the provided template. Return ONLY a JSON object {\"html\": \"...\"}. Never fabricate."},
